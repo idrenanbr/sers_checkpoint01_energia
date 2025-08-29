@@ -130,9 +130,9 @@ A média diária de `Global_active_power` durante o período **jan–jun 2008**
 
 ## Regressão linear: previsão de potência ativa pela intensidade
 
-Foi treinado um modelo de **regressão linear simples** para prever `Global_active_power` a partir de `Global_intensity` usando amostra de 200 000 registros. O modelo estimado é:
+Foi treinado um modelo de **regressão linear simples** para prever `Global_active_power` a partir de `Global_intensity` usando amostra de 200 000 registros. A equação estimada pelo modelo é:
 
-\[\widehat{\text{Global\_active\_power}} = 0{,}2377 \times \text{Global\_intensity} - 0{,}0083 \]
+Potência ativa prevista (kW) = 0,2377 × Global_intensity – 0,0083
 
 Os resultados de avaliação no conjunto de teste (20 % da amostra) foram:
 
