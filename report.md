@@ -2,17 +2,17 @@
 
 ## Descrição do dataset
 
-O conjunto de dados **Individual Household Electric Power Consumption** foi coletado entre dezembro de 2006 e novembro de 2010 e contém medições de consumo de energia elétrica em uma única residência com amostragem de **1 minuto**【747088908721260†L160-L163】.  Além da data e da hora, existem sete variáveis principais:
+O conjunto de dados **Individual Household Electric Power Consumption** foi coletado entre dezembro de 2006 e novembro de 2010 e contém medições de consumo de energia elétrica em uma única residência com amostragem de **1 minuto**.  Além da data e da hora, existem sete variáveis principais:
 
 | variável | descrição |
 |---|---|
-|`Global_active_power`|potência ativa total consumida pela casa, em kilowatts【747088908721260†L166-L169】. A potência **ativa** é a energia realmente consumida para realizar trabalho (kW)【747088908721260†L177-L181】.|
-|`Global_reactive_power`|potência reativa total consumida pela casa, em kilowatts【747088908721260†L168-L169】. A potência **reativa** é a energia "de retorno", associada ao campo magnético nas linhas; não realiza trabalho útil, mas é necessária para o funcionamento de equipamentos com bobinas【747088908721260†L177-L181】.|
-|`Voltage`|tensão média em volts【747088908721260†L170-L171】.|
-|`Global_intensity`|corrente média em amperes【747088908721260†L171-L172】.|
-|`Sub_metering_1`|energia ativa (Wh) consumida pela cozinha【747088908721260†L172-L173】.|
-|`Sub_metering_2`|energia ativa consumida pela lavanderia【747088908721260†L172-L173】.|
-|`Sub_metering_3`|energia ativa consumida pelo sistema de climatização【747088908721260†L172-L174】.|
+|`Global_active_power`|potência ativa total consumida pela casa, em kilowatts. A potência **ativa** é a energia realmente consumida para realizar trabalho (kW).|
+|`Global_reactive_power`|potência reativa total consumida pela casa, em kilowatts. A potência **reativa** é a energia "de retorno", associada ao campo magnético nas linhas; não realiza trabalho útil, mas é necessária para o funcionamento de equipamentos com bobinas.|
+|`Voltage`|tensão média em volts.|
+|`Global_intensity`|corrente média em amperes.|
+|`Sub_metering_1`|energia ativa (Wh) consumida pela cozinha.|
+|`Sub_metering_2`|energia ativa consumida pela lavanderia.|
+|`Sub_metering_3`|energia ativa consumida pelo sistema de climatização.|
 
 O arquivo possui **2 075 259** registros. Os dados contêm valores ausentes representados por “?” que foram convertidos para `NaN` ao carregar o arquivo. Cada uma das variáveis numéricas (potência, tensão, corrente e sub‑medidores) apresenta **25 979** valores ausentes; as colunas de data e hora não possuem ausências.  
 
@@ -40,13 +40,13 @@ Selecionando apenas os registros de **2007** e calculando a média diária de `G
 
 A figura abaixo apresenta a variação minuto‑a‑minuto da potência ativa em **1º de fevereiro de 2007**. Observa‑se um padrão de consumo relativamente baixo durante a madrugada, aumento pela manhã (ao redor das 7h) e picos no final da tarde/início da noite, quando há maior uso de eletrodomésticos.
 
-![Variação diária de potência ativa (1 fev 2007)]({{file:file-QARRS3PzzqgXfRijvBevjh}})
+![Variação diária de potência ativa (1 fev 2007)](outputs/global_active_power_day.png)
 
 ## Histograma da tensão (Voltage)
 
 O histograma de `Voltage` mostra distribuição aproximadamente normal centrada em **≈ 240,8 V**, com desvio‑padrão pequeno (3,24 V). A maior parte das medições fica entre 238 V e 243 V, indicando tensão relativamente estável em toda a série. Há poucos valores extremos (< 225 V ou > 253 V), possivelmente associados a falhas ou oscilações da rede.
 
-![Histograma da tensão]({{file:file-JheGXC44vtLp6UNku3kDvd}})
+![Histograma da tensão](outputs/voltage_hist.png)
 
 ## Consumo médio mensal
 
@@ -79,7 +79,7 @@ Uma nova variável **Total_Sub_metering** foi criada pela soma de `Sub_metering_
 
 O gráfico abaixo mostra a série temporal de `Voltage` durante o ano de **2008**. Apesar de certa variabilidade diária, a tensão se mantém dentro de uma faixa estreita, com poucas quedas bruscas.
 
-![Série temporal do Voltage em 2008]({{file:file-BMJxvYEwAeVkPiSNiUTuG6}})
+![Série temporal do Voltage em 2008](outputs/voltage_2008.png)
 
 ## Consumo no verão e no inverno (hemisfério norte)
 
@@ -94,7 +94,7 @@ O consumo de energia no inverno é quase **duas vezes maior** que no verão, pos
 
 Para verificar se uma amostra reduzida preserva a distribuição de `Global_active_power`, foi selecionada uma amostra aleatória de **1 %**. A distribuição da amostra (linha laranja) quase coincide com a distribuição completa (linha azul), e os valores de média, desvio padrão, quartis e extremos são muito semelhantes. Isso mostra que a amostra é representativa da população.
 
-![Comparação da distribuição de Global_active_power]({{file:file-2z1m5VtgqPEtAFbCodp6XF}})
+![Comparação da distribuição de Global_active_power](outputs/global_active_power_distribution_comparison.png)
 
 ## Normalização (Min–Max scaling)
 
@@ -126,7 +126,7 @@ Aplicou‑se o algoritmo **K‑means** com 3 clusters. O quadro abaixo apresenta
 
 A média diária de `Global_active_power` durante o período **jan–jun 2008** foi decomposta em componentes de tendência, sazonalidade semanal (periodicidade de 7 dias) e resíduo usando o método **additivo**.  A figura a seguir mostra as três componentes: tendência decrescente durante o semestre, padrão sazonal semanal bem definido e resíduos de pequena amplitude.
 
-![Decomposição da potência ativa (jan–jun 2008)]({{file:file-JZHNVVHPf3Wcq2X51SVutd}})
+![Decomposição da potência ativa (jan–jun 2008)](outputs/decomposition_global_active_power.png)
 
 ## Regressão linear: previsão de potência ativa pela intensidade
 
@@ -153,4 +153,4 @@ O alto R² e os erros baixos confirmam a forte relação linear entre intensidad
 
 ## Referências
 
-- Descrição das variáveis e distinção entre potência ativa e reativa no dataset【747088908721260†L160-L181】.
+- Descrição das variáveis e distinção entre potência ativa e reativa no dataset.
